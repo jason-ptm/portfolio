@@ -1,0 +1,81 @@
+<!-- Load animation -->
+<div class="animate">
+  <div class="box"></div>
+  <div class="line"></div>
+  <div class="box"></div>
+</div>
+<!-- Custom cursor -->
+<span id="cursor" class="curs" [ngStyle]="{'transform': 'translate(' + cursorX + 'px ,' + cursorY + 'px)'}" [ngClass]="{'hide':cursorFlag}">
+  <span class="cont">
+    <span class="circle"></span>
+  </span>
+</span>
+<!-- Configuration menu -->
+<div class="tools-cont" [ngClass]="{'active':flagTools}">
+  <i class="fa-solid fa-gear hov" id="icon" #configurationIcon (click)="openTools()"></i>
+  <div class="menu">
+    <div class="sect">
+      <p class="title">{{'languaje' | translate}}</p>
+      <div class="opts">
+        <span class="opt hov" (click)="changeLang('en')" [ngClass]="{'select':languajeFlag}">{{'english' | translate}}</span>
+        <span class="opt hov" (click)="changeLang('es')" [ngClass]="{'select':!languajeFlag}">{{'spanish' | translate}}</span>
+      </div>
+    </div>
+    <div class="sect">
+      <p class="title">{{'cursor' | translate}}</p>
+      <div class="opts">
+        <span class="opt hov curs" id="custom" (click)="changeCursor()" [ngClass]="{'select':!cursorFlag}">
+          <span class="cont">
+            <span class="circle"></span>
+          </span>
+        </span>
+        <span class="opt hov" (click)="changeCursor()" [ngClass]="{'select':cursorFlag}"><i class="fa-solid fa-arrow-pointer"></i></span>
+      </div>
+    </div>
+    <div class="sect">
+      <p class="title">{{'animations' | translate}}</p>
+      <div class="opts">
+        <mat-slide-toggle [color]="'primary'" class="hov" checked="true" (click)="changeAnimations()">
+          <span [hidden]="!_configuration.animations">{{'powerOn' | translate}}</span>
+          <span [hidden]="_configuration.animations">{{'powerOff' | translate}}</span>
+        </mat-slide-toggle>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Main container -->
+<section class="b-cont" (scroll)="onScroll()">
+  <!-- Navigation menu -->
+  <nav id="nav" [ngClass]="{'active':flagMenu}">
+    <div class="nav-title">
+      <h2 class="title isa">{{'portfolio' | translate }}</h2>
+    </div>
+    <span class="nav-icon hov isa" (click)="openMenu()">
+      <span class="icon"> </span>
+    </span>
+    <ul class="nav-opts">
+      <li class="opt hov isa">
+        <span id="logIn" *ngIf="_login.user == null" (click)="_login.logIn()"></span>
+        <span><i class="fa-solid fa-arrow-right-from-bracket" *ngIf="_login.user != null" (click)="_login.logOut()"></i></span>
+      </li>
+      <li class="opt hov isa" [routerLink]="['/home']"  [routerLinkActive]="['active']">{{ 'home' | translate }}</li>
+      <li class="opt hov isa" [routerLink]="['/projects']" [routerLinkActive]="['active']">{{'projects' | translate}}</li>
+    </ul>
+  </nav>
+  <!-- Components -->
+  <section class="component" [@routeAnimations]="prepareRoute(outlet)">
+    <router-outlet #outlet="outlet"></router-outlet>
+  </section> 
+  <!-- Footer -->
+  <footer id="footer">
+    <div class="rgh" #footerText>
+      <p class="rtxt">{{'rights' | translate}}</p>
+      <p class="rtxt sc">{{'design' | translate}} <span class="link hov" (click)="redirect('https://themeforest.net/item/shane-personal-portfolio-jekyll-theme/33372753')">evantoMarket</span></p>
+    </div>
+    <div class="icons" #footerIcons>
+      <i class="fa-brands fa-linkedin-in hov"></i>
+      <i class="fa-brands fa-github hov"></i>
+      <i class="fa-brands fa-instagram hov"></i>
+    </div>
+  </footer>
+</section>

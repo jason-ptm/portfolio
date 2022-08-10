@@ -1,0 +1,170 @@
+/* start variables */
+:root{
+    --rs-font: #4169e1;
+}
+/* end variables */
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    user-select: none;
+}
+body, html{
+    height: 100%;
+    font-family: 'Poppins', sans-serif;
+    min-width: 250px;
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+/* start generals styles  */
+.component{
+    opacity: 1;
+    transition: opacity .5s;
+}
+.title{
+    font-size: 30px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    overflow-wrap: break-word;
+}
+.text{
+    padding-top: 27px;
+    font-size: 15px;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+    line-height: 30px;
+    color: #767676;
+    font-family: 'Roboto', sans-serif;
+    word-wrap: break-word;
+}
+.container{
+    width: 100%;
+    min-height: 350px;
+    padding: 150px 0px;
+    overflow: hidden;
+    pointer-events: none;
+}
+.container .box{
+    height: 100%;
+    max-width: 990px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 300;
+    padding: 0 40px;
+}
+.btn{
+    display: inline-block;
+    padding: 13px 48px;
+    cursor: pointer;
+    transition: background .4s, color .4s;
+    border-radius: 3px;
+    max-width: 220px;
+    text-align: center;
+}
+.btn.black{
+    color: #fff;
+    background-color: #000;
+    border: 2px solid #000;
+}
+.btn.black:hover{
+    color: #000;
+}
+.btn.white{
+    color: #000;
+    background-color: #fff;
+    border: 2px solid #fff;
+}
+.btn.white:hover{
+    color: #fff;
+}
+.btn:hover{
+    background-color: transparent;
+}
+@media screen and (max-width: 350px) {
+    .container .box{
+        padding: 0 20px;
+    }
+    #welcome .title{
+        font-size: 40px;
+    }
+}
+/* start generals styles  */
+
+/* start contact form styles*/
+.contact-form .title{
+    padding: 40px 0;
+    font-size: 25px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    overflow-wrap: break-word;
+    font-family: 'Poppins', sans-serif;
+}
+.contact-form .alert{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 50px;
+}
+.contact-form{
+    width: 80% !important;
+    max-width: 900px;
+    min-height: 300px;
+}
+.contact-form .cont{
+    flex-basis: 300px;
+    max-width: 400px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.contact-form .cont:first-of-type{
+    flex-grow: 2;
+}
+.contact-form .inps{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.contact-form .inp{
+    font-size: 16px;
+    line-height: 18px;
+    font-weight: 400;
+    width: 100%;
+}
+.contact-form .inp textarea{
+    resize: none;
+    height: 180px;
+}
+.contact-form .btn{
+    margin-top: 20px;
+}
+.contact-form .info-cont{
+    gap: 30px;
+    flex-grow: 1;
+}
+.contact-form .info-cont i{
+    margin-right: 10px;
+}
+@media screen and (max-width:500px){
+    .contact-form{
+        width: 90% !important;
+    }
+    .contact-form .title{
+        font-size: 20px;
+    }
+}
+#cursor.hov .circle{
+    position: absolute;
+    transform: scale(12);
+}
+#cursor.hov .cont{
+    border-color: transparent;
+}
+/* end contact form styles*/

@@ -1,0 +1,167 @@
+<div class="container">
+    <form class="form box" [formGroup]="projectForm">
+        <div class="inp-box">
+            <div class="btn black" (click)="addData()" [ngClass]="{'disabled':projectForm.invalid || _dbService.selectedProject.languajes.length == 0}">Guardar</div>
+        </div>
+        <div class="inp-box">
+            <mat-form-field class="example-full-width inp" appearance="fill">
+                <mat-label>Título en español</mat-label>
+                <input type="text" matInput #titleEs
+                    maxlength="30"
+                    minlength="10"
+                    placeholder="Ej. Proyecto"
+                    formControlName="titleEs"
+                    [(ngModel)]="_dbService.selectedProject.es.title"
+                    >
+                <mat-hint align="end">{{titleEs.value.length}} / 30</mat-hint>
+                <mat-error *ngIf="projectForm.get('titleEs')?.errors?.['maxlength'] || projectForm.get('titleEs')?.errors?.['minlength']">
+                  Cantidad de caracteres incorrecta
+                </mat-error>
+                <mat-error *ngIf="projectForm.get('titleEs')?.errors?.['required']">
+                  El título es <strong>obligatorio</strong>
+                </mat-error>
+            </mat-form-field>
+    
+            <mat-form-field class="example-full-width inp" appearance="fill">
+                <mat-label>Título en ingles</mat-label>
+                <input type="text" matInput #titleEn
+                    maxlength="30"
+                    minlength="10"
+                    placeholder="Ej. Project"
+                    formControlName="titleEn"
+                    [(ngModel)]="_dbService.selectedProject.en.title"
+                    >
+                <mat-hint align="end">{{titleEn.value.length}} / 30</mat-hint>
+                <mat-error *ngIf="projectForm.get('titleEn')?.errors?.['maxlength'] || projectForm.get('titleEn')?.errors?.['minlength']">
+                  Cantidad de caracteres incorrecta
+                </mat-error>
+                <mat-error *ngIf="projectForm.get('titleEn')?.errors?.['required']">
+                  El título es <strong>obligatorio</strong>
+                </mat-error>
+            </mat-form-field>
+        </div>
+        <div class="inp-box">
+            <mat-form-field class="example-full-width inp" appearance="fill">
+                <mat-label>Descripción en español</mat-label>
+                <textarea type="text" matInput #descriptionEs
+                    maxlength="250"
+                    minlength="10"
+                    placeholder="Ej. Proyecto"
+                    formControlName="descriptionEs"
+                    [(ngModel)]="_dbService.selectedProject.es.description"
+                    ></textarea>
+                <mat-hint align="end">{{descriptionEs.value.length}} / 250</mat-hint>
+                <mat-error *ngIf="projectForm.get('descriptionEs')?.errors?.['maxlength'] || projectForm.get('descriptionEs')?.errors?.['minlength']">
+                  Cantidad de caracteres incorrecta
+                </mat-error>
+                <mat-error *ngIf="projectForm.get('descriptionEs')?.errors?.['required']">
+                  La descripción es <strong>obligatorio</strong>
+                </mat-error>
+            </mat-form-field>
+    
+            <mat-form-field class="example-full-width inp" appearance="fill">
+                <mat-label>Descripción en ingles</mat-label>
+                <textarea type="text" matInput #descriptionEn
+                    maxlength="250"
+                    minlength="10"
+                    placeholder="Ej. Project"
+                    formControlName="descriptionEn"
+                    [(ngModel)]="_dbService.selectedProject.en.description"
+                    ></textarea>
+                <mat-hint align="end">{{descriptionEn.value.length}} / 250</mat-hint>
+                <mat-error *ngIf="projectForm.get('descriptionEn')?.errors?.['maxlength'] || projectForm.get('descriptionEn')?.errors?.['minlength']">
+                  Cantidad de caracteres incorrecta
+                </mat-error>
+                <mat-error *ngIf="projectForm.get('descriptionEn')?.errors?.['required']">
+                  La descripción es <strong>obligatorio</strong>
+                </mat-error>
+            </mat-form-field>
+        </div>
+        <div class="inp-box">
+            <mat-form-field appearance="fill">
+                <mat-label>Fecha de inicio</mat-label>
+                <input matInput 
+                    [matDatepicker]="startDate"
+                    [max]="maxDate" 
+                    formControlName="startDate"
+                    >
+                <mat-hint>MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle matSuffix [for]="startDate"></mat-datepicker-toggle>
+                <mat-datepicker #startDate disabled="false"></mat-datepicker>
+            </mat-form-field>
+    
+            <mat-form-field appearance="fill">
+                <mat-label>Fecha de Fin</mat-label>
+                <input matInput 
+                    [matDatepicker]="endDate"
+                    [max]="maxDate"
+                    formControlName="endDate"
+                    >
+                <mat-hint>MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle matSuffix [for]="endDate"></mat-datepicker-toggle>
+                <mat-datepicker #endDate disabled="false"></mat-datepicker>
+                <mat-error *ngIf="projectForm.get('endDate')?.errors?.['required']">
+                    La fecha de fin es <strong>obligatorio</strong>
+                </mat-error>
+            </mat-form-field>
+        </div>
+        <div class="inp-box">
+            <mat-form-field class="example-full-width inp" appearance="fill">
+                <mat-label>Url pagina</mat-label>
+                <input type="text" matInput
+                    placeholder="Ej. www.proyecto.com"
+                    formControlName="urlPage"
+                    [(ngModel)]="_dbService.selectedProject.urlPage"
+                    >
+                <mat-error *ngIf="projectForm.get('urlPage')?.errors?.['required']">
+                  El link de la pagina es <strong>obligatorio</strong>
+                </mat-error>
+            </mat-form-field>
+    
+            <mat-form-field class="example-full-width inp" appearance="fill">
+                <mat-label>Url repositorio</mat-label>
+                <input type="text" matInput
+                    placeholder="Ej. www.github/proyecto.com"
+                    formControlName="urlRep"
+                    [(ngModel)]="_dbService.selectedProject.urlRep"
+                    >
+                <mat-error *ngIf="projectForm.get('urlRep')?.errors?.['required']">
+                  El link del repositorio es <strong>obligatorio</strong>
+                </mat-error>
+            </mat-form-field>
+        </div>
+        <div class="inp-box">
+            <div class="lang-box">
+                <mat-form-field class="example-full-width inp-lang" appearance="fill">
+                    <mat-label>Lenguaje</mat-label>
+                    <input type="text" matInput
+                        maxlength="20"
+                        placeholder="Ej. Python"
+                        [formControl]="languajeInp"
+                        >
+                    <mat-error *ngIf="_dbService.selectedProject.languajes.length == 0">
+                        Ingrese un <strong>lenguaje de programación</strong>
+                    </mat-error>
+                </mat-form-field>
+                <div class="btn hov black" (click)="addLang()">Añadir</div>
+            </div>
+    
+            <ul class="list">
+                <li class="item" *ngFor="let lang of _dbService.selectedProject.languajes; let index = index">
+                    {{lang}}
+                    <i class="fa-solid fa-xmark" (click)="deleteLang(index)"></i>
+                </li>
+            </ul>
+        </div>
+
+        <div class="inp-box">
+            <div class="image" [ngClass]="{'image-select':indexImage == index }" *ngFor="let image of imagesUrls; let index = index" (click)="selectImage(index)">
+                <img [src]="image" alt="Imagen de fondo">
+            </div>
+        </div>
+        
+        <div class="inp-box">
+            <div class="btn black" (click)="addData()" [ngClass]="{'disabled':projectForm.invalid || _dbService.selectedProject.languajes.length == 0}">Guardar</div>
+        </div>
+    </form>
+</div>
