@@ -42,12 +42,10 @@ export class AppComponent implements OnInit{
 
   //https://www.youtube.com/watch?v=ZwMd2z_iM0Q&ab_channel=ALL.DESIGN
 
-  ngOnInit(): void {
-    window.addEventListener('load',()=>{
-      this.initialAnimations()
-      this.setAppLanguaje()
-      this.selectElements()
-    })
+  async ngOnInit() {
+    await this.initialAnimations()
+    this.setAppLanguaje()
+    this._configuration.animateMouse()
   }
 
   initialAnimations():void{
@@ -121,14 +119,5 @@ export class AppComponent implements OnInit{
   
   changeAnimations(){
     this._configuration.animations = !this._configuration.animations
-  }
-
-  selectElements(){
-    document.querySelectorAll('.hov').forEach(obj =>{
-      obj.addEventListener('mouseenter', ()=> document.querySelector('#cursor')?.classList.add('hov'))
-      obj.addEventListener('mouseleave', ()=> document.querySelector('#cursor')?.classList.remove('hov'))
-    });
-  }
-
-  
+  }  
 }

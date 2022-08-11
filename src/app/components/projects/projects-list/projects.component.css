@@ -62,7 +62,7 @@
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: center;
     align-content: center;
     gap: 30px;
     height: 100%;
@@ -71,6 +71,7 @@
     height: 180px;
     flex-grow: 1;
     flex-basis: 250px;
+    max-width: 400px;
     border-radius: 6px;
     overflow: hidden;
     background-repeat: no-repeat;

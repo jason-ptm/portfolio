@@ -47,7 +47,7 @@ export class ProjectsComponent implements OnInit {
     gsap.timeline({
       scrollTrigger:{
         trigger:'.bsd',
-        start:'-60px top',
+        start:'-80px top',
         end:'bottom bottom',
         pin:true,
         pinSpacing:false

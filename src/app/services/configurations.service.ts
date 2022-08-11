@@ -9,4 +9,11 @@ export class ConfigurationsService {
   animations:boolean = true
 
   constructor() { }
+
+  animateMouse(){
+    document.querySelectorAll('.hov').forEach(obj =>{
+      obj.addEventListener('mouseenter', ()=> document.querySelector('#cursor')?.classList.add('hov'))
+      obj.addEventListener('mouseleave', ()=> document.querySelector('#cursor')?.classList.remove('hov'))
+    });
+  }
 }
