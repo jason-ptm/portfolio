@@ -30,7 +30,7 @@ export class DataBaseService {
 
   public arrProjects: Project[] = []
 
-  constructor(private _http: HttpClient, private _store:AngularFirestore) {
+  constructor(private _store:AngularFirestore) {
    }
 
   async getProjects(){
