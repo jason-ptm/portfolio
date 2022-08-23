@@ -92,7 +92,7 @@
     <!-- Contact Form -->
     <swal #formCon [showCloseButton]="true" [showConfirmButton]="false" customClass="contact-form">
         <div *swalPortal="swalTargets.content" class="alert alert-info">
-            <form class="form cont" [formGroup]="contactForm">
+            <form class="form cont" [formGroup]="contactForm" netlify>
                 <h1 class="title">{{'formCTitle' | translate}}</h1>
                 <div class="inps">
                     <mat-form-field class="example-full-width inp" appearance="fill">
@@ -133,7 +133,7 @@
                         <mat-hint align="end">{{message.value.length}} / 250</mat-hint>
                     </mat-form-field>
     
-                    <div class="btn hov black">{{'btnSend' | translate}}</div>
+                    <button class="btn hov black">{{'btnSend' | translate}}</button>
                 </div>
             </form>
             <div class="info-cont cont">
