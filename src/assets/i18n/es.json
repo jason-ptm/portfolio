@@ -21,7 +21,7 @@
     "skillsTitle": "Tengo habilidades en desarrollo y programación",
     "skillsTxt":"Actualmente estoy trabajando como FreeLancer, además de ello cada día estudio con el fin de mejorar mis conocimientos y corregir errores cometidos en el pasado, por ello he adquirido destrezas en multiples lenguajes.",
     "skills":[
-        ["AngularJs","40%"],
+        ["Angular","40%"],
         ["CSS3", "70%"],
         ["HTML5", "80%"],
         ["JavaScript","60%"],
