@@ -92,7 +92,7 @@
     <!-- Contact Form -->
     <swal #formCon [showCloseButton]="true" [showConfirmButton]="false" customClass="contact-form">
         <div *swalPortal="swalTargets.content" class="alert alert-info">
-            <form class="form cont" [formGroup]="contactForm" netlify>
+            <form class="form cont" [formGroup]="contactForm" netlify action="">
                 <h1 class="title">{{'formCTitle' | translate}}</h1>
                 <div class="inps">
                     <mat-form-field class="example-full-width inp" appearance="fill">
