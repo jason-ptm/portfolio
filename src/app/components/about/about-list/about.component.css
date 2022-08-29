@@ -142,7 +142,9 @@
 #skills .box{
     display: flex;
     flex-direction: row;
-    /* flex-wrap: wrap-reverse; */
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap-reverse;
     gap: 30px;
     transform: translateX(-20%);
     opacity: 0;
@@ -153,9 +155,12 @@
 }
 #skills .left{
     flex-basis: 60%;
+    flex-grow: 1;
 }
 #skills .right{
-    flex-basis: 40%;
+    flex-basis: 240px;
+    flex-grow: 1;
+    height: auto;
 }
 #skills .image{
     width: 100%;
@@ -166,13 +171,17 @@
 }
 #skills .lng{
     padding: 0 8px;
-    margin: 14px 0;
+    margin: 20px 0;
     display: flex;
     gap: 20px;
     flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: space-between;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
     align-items: center;
+}
+#skills .lnrp{
+    text-align: center;
+    flex-basis: 80px;
 }
 #skills .bar{
     width: 170px;
@@ -183,15 +192,15 @@
 }
 #skills .line{
     display: inline-block;
-    width: 80%;
     height: 100%;
     left: 0;
     border-radius: 4px;
     top: 0;
     position: absolute;
     z-index: 100;
-    background-color: #FBDA61;
-    background-image: linear-gradient(45deg, #FBDA61 0%, #FF5ACD 100%);
+    background-color: #A9C9FF;
+    background-image: linear-gradient(19deg, #A9C9FF 0%, #B721FF 100%);
+
 }
 #skills .bar::after{
     content: '';
@@ -226,6 +235,11 @@
     font-size: 12px;
     text-align: center;
     color: #888;
+}
+@media screen and (min-width:382px) {
+    #skills .lnrp{
+        text-align: left;
+    }
 }
 /* Animations */
 #skills.anim-init .box{

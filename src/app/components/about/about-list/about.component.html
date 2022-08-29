@@ -32,7 +32,6 @@
     <!-- Skills -->
     <div class="container" id="skills">
         <div class="box">
-            
             <div class="left">
                 <div class="head">
                     <h3 class="title">{{'skillsTitle' | translate}}</h3>
@@ -40,20 +39,21 @@
                 <div class="content">
                     <ul class="languajes">
                         <p class="text">Lenguajes que manejo y en los que he trabajado.</p>
-                        <li class="lng">
-                            <span class="txt">JavaScript</span>
+                        <li class="lng" *ngFor="let skill of ('skills' | translate); let i = index">
+                            <span class="txt lnrp">{{skill[0]}}</span>
                             <div class="prc-bar">
                                 <div class="bar">
-                                    <span class="line"></span>
+                                    <span class="line" [ngStyle]="{'width':skill[1]}"></span>
                                 </div>
-                                <span class="txt">Avanzado</span>
+                                <span class="txt">{{skill[2]}}</span>
                             </div>
                         </li>
                     </ul>
+                    <p class="text"></p>
                 </div>
             </div>
             <div class="right">
-                <img src="../../../../assets/img/knowledges/bck-1.gif" class="image" alt="gif trabajo en equipo">
+                <img src="../../../../assets/img/knowledges/bck-1.gif" class="image" alt="Gif trabajo en equipo">
             </div>
             <!-- <h3 class="title" style="padding-bottom:27px;">{{'skillsTitle' | translate}}</h3> -->
         </div>
