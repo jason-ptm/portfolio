@@ -5,7 +5,6 @@ import { Router, Event, NavigationEnd, RouterOutlet } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
 // Animations
-import { fader } from './animations/route-animations';
 import gsap from 'gsap';
 
 import { ConfigurationsService } from './services/configurations.service';
@@ -15,9 +14,7 @@ import { LoginService } from './services/login.service';
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  animations:[
-    fader
-  ]
+  animations:[]
 })
 export class AppComponent implements OnInit{
 
@@ -39,8 +36,6 @@ export class AppComponent implements OnInit{
       if (event instanceof NavigationEnd) this.flagMenu = false
     });
   }
-
-  //https://www.youtube.com/watch?v=ZwMd2z_iM0Q&ab_channel=ALL.DESIGN
 
   async ngOnInit() {
     await this.initialAnimations()

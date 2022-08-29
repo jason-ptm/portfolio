@@ -30,7 +30,8 @@
     right: 0;
     z-index: 200;
     clip-path: polygon(100% 0, 15% 0, 0 100%, 100% 100%);
-    background-color: #62686C;
+    background-color: #8BC6EC;
+    background-image: linear-gradient(135deg, #8BC6EC 0%, #9599E2 100%);
     transition: width 1s, opacity 1s;
 }
 #welcome .box{
@@ -85,6 +86,9 @@
 }
 /* fin estilos welcome */
 /* inicio estilos about me */
+#about{
+    background-color: #f7f7f7;
+}
 #about .box{
     display: flex;
     flex-direction: row;
@@ -135,46 +139,93 @@
 }
 /* fin estilos about me */
 /* inicio estilos skills */
-#skills{
-    background-color: #f7f7f7;
-}
 #skills .box{
+    display: flex;
+    flex-direction: row;
+    /* flex-wrap: wrap-reverse; */
+    gap: 30px;
     transform: translateX(-20%);
     opacity: 0;
     transition: transform 1s, opacity 1s;
 }
 #skills .text{
-    margin-bottom: 20px;
+    margin-bottom: 17px;
 }
-#skills .items{
+#skills .left{
+    flex-basis: 60%;
+}
+#skills .right{
+    flex-basis: 40%;
+}
+#skills .image{
     width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 34px;
 }
-#skills .item{
+#skills .languajes{
     width: 100%;
+    list-style: none;
 }
-#skills .txt{
+#skills .lng{
+    padding: 0 8px;
+    margin: 14px 0;
     display: flex;
+    gap: 20px;
+    flex-direction: row;
+    flex-wrap: nowrap;
     justify-content: space-between;
-    margin-bottom: 7px;
+    align-items: center;
 }
 #skills .bar{
-    width: 100%;
-    height: 4px;
-    background-color: #eaeaea;
+    width: 170px;
+    height: 5px;
+    border-radius: 4px;
+    background-color: #ddd;
     position: relative;
-    border-radius: 2px;
 }
-#skills .cmp{
-    width: 0;
-    position: absolute;
+#skills .line{
+    display: inline-block;
+    width: 80%;
     height: 100%;
-    top: 0;
     left: 0;
-    background-color: #000;
-    border-radius: 2px;
+    border-radius: 4px;
+    top: 0;
+    position: absolute;
+    z-index: 100;
+    background-color: #FBDA61;
+    background-image: linear-gradient(45deg, #FBDA61 0%, #FF5ACD 100%);
+}
+#skills .bar::after{
+    content: '';
+    display: inline-block;
+    position: absolute;
+    width: 4px;
+    height: 100%;
+    background-color: #777;
+    border-left: 4px solid #fff;
+    border-right: 4px solid #fff;
+    top: 0;
+    left: calc(33% - 4px);
+    z-index: 200;
+}
+#skills .bar::before{
+    content: '';
+    display: inline-block;
+    position: absolute;
+    width: 4px;
+    height: 100%;
+    background-color: #777;
+    border-left: 4px solid #fff;
+    border-right: 4px solid #fff;
+    top: 0;
+    right: calc(33% - 2px);
+    z-index: 200;
+}
+#skills .prc-bar .txt{
+    display: inline-block;
+    padding-top: 6px;
+    width: 100%;
+    font-size: 12px;
+    text-align: center;
+    color: #888;
 }
 /* Animations */
 #skills.anim-init .box{
