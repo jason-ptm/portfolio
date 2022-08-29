@@ -8,6 +8,7 @@ import ScrollTrigger from 'gsap/ScrollTrigger';
 import { ConfigurationsService } from 'src/app/services/configurations.service';
 import { LoginService } from 'src/app/services/login.service';
 import { Router } from '@angular/router';
+import { CSSRulePlugin } from 'gsap/all';
 
 @Component({
   selector: 'app-projects',
@@ -30,13 +31,12 @@ export class ProjectsComponent implements OnInit {
   ngOnInit(): void {
     this._dbService.getProjects()
     gsap.registerPlugin(ScrollTrigger)
+    this.animateSideBar()
   }
 
   sideBar(index?:number){
     if(index!= undefined) this.selectProject(index)
-    document.querySelector('#side-bar .back')?.classList.toggle('op')
-    this.animateSideBar()
-    this.sideBarFlag = !this.sideBarFlag
+    this.showSideBar(!this.sideBarFlag)
   }
 
   selectProject(index:number){
@@ -47,12 +47,27 @@ export class ProjectsComponent implements OnInit {
     gsap.timeline({
       scrollTrigger:{
         trigger:'.bsd',
-        start:'-80px top',
+        start:'top 70px',
         end:'bottom bottom',
         pin:true,
-        pinSpacing:false
+        toggleClass:'slide'
       }
     })
+  }
+
+  async showSideBar(flag:boolean){
+    if(flag){
+      this.sideBarFlag = !this.sideBarFlag
+      gsap.timeline({defaults:{duration: .5}})
+        .to('#side-bar .info',{x:0},0)
+        .to('.bsd .back',{opacity:1},0)
+    }
+    else{
+      await gsap.timeline({defaults:{duration:.5}})
+        .to('#side-bar .info',{x:'100%'})
+        .to('.bsd .back',{opacity:0},0)
+      this.sideBarFlag = !this.sideBarFlag
+    }
   }
 
   add(){

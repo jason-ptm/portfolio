@@ -28,8 +28,8 @@
         </div>
     </section>
     <section class="bsd" [ngClass]="{'open':sideBarFlag}">
+        <div class="back" (click)="sideBar()"></div>
         <div id="side-bar" >
-            <div class="back" (click)="sideBar()"></div>
             <div class="bar">
                 <span class="icon-cont hov" (click)="sideBar()" *ngIf="_dbService.selectedProject._id != undefined">
                     <span class="icon"></span>

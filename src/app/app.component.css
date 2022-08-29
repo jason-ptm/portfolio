@@ -158,7 +158,7 @@
 }
 #nav{
     z-index: 700;
-    position: relative;
+    position: fixed;
     height: 80px;
     width: 100%;
     padding: 0 30px;
@@ -167,12 +167,11 @@
     justify-content: space-between;
     align-items: center;
     background-color: transparent;
-    transition: .5s;
+    transition: all .5s;
 }
 #nav.fx{
     background-color: #fff;
     height: 60px;
-    position: fixed;
     top: 0;
     z-index: 700;
 }

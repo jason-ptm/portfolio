@@ -110,10 +110,13 @@
 /* end projects styles*/
 /* start styles sidebar */
 .bsd{
-    top: 0;
+    top:80px;
     position: absolute;
     width: 100%;
-    height: 100%;
+    height: calc(100% - 80px);
+}
+.bsd.slide{
+    top: 60px !important;
 }
 #side-bar{
     pointer-events: all;
@@ -125,16 +128,15 @@
 }
 .back{
     width: 100%;
-    height: 100%;
+    height:calc(100vh - 60px) ;
     opacity: 0;
     z-index: -1;
+    position: absolute;
     pointer-events: none;
     background-color: #0003;
     pointer-events: none;
-    transition: opacity .6s;
 }
-#side-bar .back.op{
-    opacity: 1;
+.open .back{
     z-index: 400;
     pointer-events: all;
 }
@@ -147,20 +149,18 @@
     position: absolute;
     right: 0;
     padding: 40px;
-    
     margin-left: 20px;
     border-top-left-radius: 6px;
     border-bottom-left-radius: 6px;
     z-index: 500;
     transform: translateX(100%);
-    transition: transform .6s;
 }
 .bsd.open{
     z-index: 500;
 }
-.open #side-bar .info{
+/* .open #side-bar .info{
     transform: translateX(0);
-}
+} */
 .icon-cont{
     display: inline-flex;
     position: absolute;
@@ -203,12 +203,12 @@
     transform: rotate(45deg) translate(3px, 2px);
     transition: transform .5s;
 }
-.open .icon::before{
+/* .open .icon::before{
     transform: rotate(45deg)  translate(-2px, -3px);
 }
 .open .icon::after{
     transform: rotate(-45deg) translate(-2px, 3px);
-}
+} */
 .text{
     line-height: 24px;
 }
