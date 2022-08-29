@@ -26,7 +26,6 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 
 import { AppComponent } from './app.component';
 import { AboutComponent } from './components/about/about-list/about.component';
-import { ProjectsComponent } from './components/projects/projects-list/projects.component';
 import { ProjectComponent } from './components/project/project-list/project.component';
 
 // services
@@ -55,7 +54,6 @@ export function HttpLoaderFactory(http: HttpClient){
   declarations: [
     AppComponent,
     AboutComponent,
-    ProjectsComponent,
     ProjectComponent
   ],
   imports: [
