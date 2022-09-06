@@ -116,8 +116,4 @@ export class AppComponent implements OnInit{
   changeCursor(){
     this.cursorFlag = !this.cursorFlag
   }
-  
-  changeAnimations(){
-    this._configuration.animations = !this._configuration.animations
-  }  
 }

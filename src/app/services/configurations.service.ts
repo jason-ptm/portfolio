@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import * as $ from 'jquery'
 
 @Injectable({
   providedIn: 'root'
@@ -6,7 +7,10 @@ import { Injectable } from '@angular/core';
 export class ConfigurationsService {
 
   lang:string = 'es'
-  animations:boolean = true
+
+  home:boolean = false
+  about:boolean = false
+  projects:boolean = false
 
   constructor() { }
 
@@ -15,5 +19,31 @@ export class ConfigurationsService {
       obj.addEventListener('mouseenter', ()=> document.querySelector('#cursor')?.classList.add('hov'))
       obj.addEventListener('mouseleave', ()=> document.querySelector('#cursor')?.classList.remove('hov'))
     });
+  }
+
+  slideToDiv(cont:string){
+    if(cont != undefined){
+      $('html, body').animate({
+        scrollTop: $(cont).offset()?.top
+      }, 1000);
+    }
+  }
+
+  changeValues(div:string){
+    if(div == 'welcome'){
+      this.home = true
+      this.about = false
+      this.projects = false
+    }
+    else if(div == 'projects'){
+      this.home = false
+      this.about = false
+      this.projects = true
+    }
+    else{
+      this.home = false
+      this.about = true
+      this.projects = false
+    }
   }
 }

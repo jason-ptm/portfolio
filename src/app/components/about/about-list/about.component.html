@@ -1,5 +1,5 @@
 <!-- Main container -->
-<section class="cont" [ngClass]="{'anim-off': !_configuration.animations}">
+<section class="cont">
     <!-- welcome -->
     <div class="container anim-init" id="welcome">
         <div class="background"></div>
@@ -16,7 +16,7 @@
         </div>
     </div>
     <!-- About -->
-    <div class="container" id="about">
+    <div class="container bck-cle" id="about">
         <div class="box">
             <div class="image">
                 <img src="../../../assets/img/img-1.jpg" alt="Background">
@@ -50,19 +50,66 @@
         </div>
     </div>
     <!-- Studies -->
-    <div class="container" id="studies">
+    <div class="container bck-cle" id="studies">
         <div class="box">
             <span class="container-title">{{'studiesTlt' | translate}}</span>
             <h3 class="title">{{'studiesTitle' | translate}}</h3>
             <p class="text">{{'studiesTxt' | translate}}</p>
             <div class="items">
-                <div class="item hov item-1" *ngFor="let studie of ('studiesItems' | translate)">
+                <div class="item hov" *ngFor="let studie of ('studiesItems' | translate)">
                     <img [src]="studie[0]" alt="" class="background">
                     <div class="info">
                         <div class="cn">
                             <h3 class="title">{{studie[1]}}</h3>
                             <p class="tlt">{{studie[2]}}</p>
                             <p class="date">{{studie[3]}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Projects -->
+    <div class="container" id="projects">
+        <div class="box">
+            <div class="head">
+                <h3 class="title">{{'welcomeTitle' | translate}}</h3>
+                <p class="text">{{'welcomeText' | translate}}</p>
+            </div>
+            <div class="items">
+                <div class="item container" [ngClass]="{'left': i%2 == 0}" *ngFor="let project of _dbService.arrProjects; let i = index">
+                    <div class="image">
+                        <img src="../../../../assets/img/project-bck.jpg" alt="">
+                    </div>
+                    <div class="info">
+                        <h3 class="title" [hidden]="_configuration.lang == 'en'">{{project.es.title}}</h3>
+                        <h3 class="title" [hidden]="_configuration.lang == 'es'">{{project.en.title}}</h3>
+                        <div class="slide" #slider>
+                            <div class="sect icons">
+                                <i class="fa-solid fa-chevron-left icon hov" (click)="changeSlide(slider)"></i>
+                                <i class="fa-solid fa-chevron-right icon hov" (click)="changeSlide(slider)"></i>
+                            </div>
+                            <div class="sect">
+                                <p class="text" [hidden]="_configuration.lang == 'en'">{{project.es.description}}</p>
+                                <p class="text" [hidden]="_configuration.lang == 'es'">{{project.en.description}}</p>
+                            </div>
+                            <div class="sect">
+                                <p class="text">{{'languajes' | translate}}</p>
+                                <ul class="lngs">
+                                    <li class="lng text" *ngFor="let lng of project.languajes">{{lng}}</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="icons">
+                            <span class="link hov" (click)="redirect(project.urlRep)">
+                                <i class="fa-brands fa-github"></i>
+                                Repositorio github
+                            </span>
+                            <span class="link hov" (click)="redirect(project.urlPage)">
+                                <i class="fa-solid fa-globe"></i>
+                                Sitio web
+                            </span>
                         </div>
                     </div>
                 </div>
@@ -97,7 +144,7 @@
                 <div class="inps">
                     <mat-form-field class="example-full-width inp" appearance="fill">
                         <mat-label>{{'inpName' | translate}}</mat-label>
-                        <input type="email" matInput #name placeholder="Ej. pat@ejemplo.com" maxlength="30" formControlName="name">
+                        <input type="text" matInput #name placeholder="Ej. Nicolas Hernandez" maxlength="30" formControlName="name">
                         <mat-error *ngIf="contactForm.get('name')?.errors?.['required']">
                           {{'inpErr1' | translate}} <strong>{{'inpStrong' | translate}}</strong>
                         </mat-error>

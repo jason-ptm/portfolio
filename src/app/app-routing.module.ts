@@ -9,11 +9,6 @@ const routes: Routes = [
       return import('./components/about/about.module').then(m => m.AboutModule)
     }
   },{
-    path:'projects',
-    loadChildren: ()=>{
-      return import('./components/projects/projects.module').then(m=>m.ProjectsModule)
-    }
-  },{
     path:'project/:_id',
     loadChildren: ()=>{
       return import('./components/project/project.module').then(m=>m.ProjectModule)

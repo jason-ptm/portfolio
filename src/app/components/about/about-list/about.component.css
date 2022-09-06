@@ -30,7 +30,8 @@
     right: 0;
     z-index: 200;
     clip-path: polygon(100% 0, 15% 0, 0 100%, 100% 100%);
-    background-color: #62686C;
+    background-color: #8EC5FC;
+    background-image: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%);
     transition: width 1s, opacity 1s;
 }
 #welcome .box{
@@ -41,6 +42,7 @@
 }
 #welcome .title{
     transform: translateY(-100px);
+    opacity: .3;
     font-size: 60px;
     font-weight: 900;
     text-transform: uppercase;
@@ -49,13 +51,16 @@
     font-family: 'Poppins', sans-serif;
     word-wrap: break-word;
     margin-bottom: 15px;
+    transition: transform 1s, opacity .5s;
 }
 #welcome .title span{
     color: #000;
 }
 #welcome .txt{
     transform: translateY(-100px);
+    opacity: .3;
     color: #777;
+    transition: transform 1s, opacity .5s;
 }
 #welcome .tlan{
     position: relative;
@@ -78,6 +83,10 @@
 #welcome.anim-init .background{
     width: 50%;
     opacity: 1;
+}
+#welcome.anim-init .txt, #welcome.anim-init .title{
+    opacity: 1;
+    transform: translateY(0);
 }
 .anim-off #welcome .background{
     width: 50%;
@@ -135,7 +144,7 @@
 }
 /* fin estilos about me */
 /* inicio estilos skills */
-#skills{
+.bck-cle{
     background-color: #f7f7f7;
 }
 #skills .box{
@@ -267,6 +276,143 @@
     opacity: 1;
 }
 /* fin estilos estudios */
+/* inicio estilos projects */
+#projects .head{
+    transform: translateX(-100px);
+    opacity: 0;
+    transition: transform 1s, opacity 1s;
+}
+#projects .items{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 60px;
+    padding-top: 60px;
+}
+#projects .item{
+    transform: translateX(-100px);
+    opacity: 0;
+    width: 100%;
+    padding: 40px 0;
+    display: flex;
+    flex-direction: row-reverse;
+    flex-wrap: wrap;
+    gap: 20px;
+    transition: transform 1s, opacity .7s;
+}
+#projects .item.left{
+    transform: translateX(100px);
+}
+#projects .item.view{
+    transform: translateX(0);
+    opacity: 1;
+}
+#projects .items .title{
+    font-size: 20px;
+    font-weight: 600;
+}
+#projects .items .text{
+    padding-top: 0;
+}
+#projects .item.left{
+    flex-direction: row;
+}
+#projects .item .image{
+    flex-basis: 250px;
+    flex-grow: 6;
+    display: flex;
+    align-items: center;
+}
+#projects .image img{
+    width: 100%;
+}
+#projects .slide{
+    width: 100%;
+    height: 200px;
+    display: flex;
+    position: relative;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    flex-grow: 1;
+    margin: 20px 0;
+}
+#projects .slide .sect{
+    position: absolute;
+    opacity: 1;
+    width:calc(90% - 44px);
+    height: auto;
+    flex-grow: 1;
+    word-break: break-all;
+    transition: opacity .5s;
+}
+#projects .slide .sect:nth-child(2){
+    opacity: 0;
+}
+#projects .slide.change .sect{
+    opacity: 0;
+}
+#projects .slide.change .sect:nth-child(2){
+    opacity: 1;
+}
+#projects .slide .icons{
+    opacity: 1;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+#projects .slide.change .icons{
+    opacity: 1;
+}
+#projects .slide .icon{
+    pointer-events: all;
+    cursor: pointer;
+}
+#projects .item .info{
+    flex-basis: 250px;
+    flex-grow: 4;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+#projects .lng{
+    margin-left: 20px;
+}
+#projects .icons{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    justify-content: space-evenly;
+    align-items: center;
+}
+#projects .icons .link{
+    font-size: 14px;
+    color: #2874A6;
+    cursor: pointer;
+    pointer-events: all;
+    transition: transform .5s;
+}
+#projects .icons .link:hover{
+    color: #3498DB;
+    transform: scale(1.1);
+}
+#projects .icons i{
+    margin-right: 8px;
+    font-size: 18px;
+}
+
+/* Animations */
+#projects.anim-init .head{
+    transform: translateX(0);
+    opacity: 1;
+}
+.anim-off #projects .head{
+    transform: translateX(0);
+    opacity: 1;
+}
+/* fin estilos projects */
 /* inicio estilos contact */
 #contact{
     position: relative;

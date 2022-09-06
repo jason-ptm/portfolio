@@ -10,11 +10,8 @@ import Swal from 'sweetalert2';
 export class DataBaseService {
 
   projectPlant: Project = {
-    startDate:'',
-    endDate:'',
     urlPage:'',
     urlRep:'',
-    image:'',
     languajes:[''],
     en:{
       title:'',
@@ -39,8 +36,6 @@ export class DataBaseService {
         res.forEach(item => {
           let project:Project = item.data() as Project
           project._id = item.id
-          this.arrProjects.push(project)
-          this.arrProjects.push(project)
           this.arrProjects.push(project)
         })
       },err =>{
@@ -117,7 +112,6 @@ export class DataBaseService {
         console.log(err)
       }
     )
-    // return this._http.put(this.urlApi + '/' + this.selectedProject._id, this.selectedProject)
   }
 
   async deleteProject(){

@@ -32,15 +32,6 @@
         <span class="opt hov" (click)="changeCursor()" [ngClass]="{'select':cursorFlag}"><i class="fa-solid fa-arrow-pointer"></i></span>
       </div>
     </div>
-    <div class="sect">
-      <p class="title">{{'animations' | translate}}</p>
-      <div class="opts">
-        <mat-slide-toggle [color]="'primary'" class="hov" checked="true" (click)="changeAnimations()">
-          <span [hidden]="!_configuration.animations">{{'powerOn' | translate}}</span>
-          <span [hidden]="_configuration.animations">{{'powerOff' | translate}}</span>
-        </mat-slide-toggle>
-      </div>
-    </div>
   </div>
 </div>
 <!-- Main container -->
@@ -58,8 +49,9 @@
         <span id="logIn" *ngIf="_login.user == null" (click)="_login.logIn()"></span>
         <span><i class="fa-solid fa-arrow-right-from-bracket" *ngIf="_login.user != null" (click)="_login.logOut()"></i></span>
       </li>
-      <li class="opt hov isa" [routerLink]="['/home']"  [routerLinkActive]="['active']">{{ 'home' | translate }}</li>
-      <li class="opt hov isa" [routerLink]="['/projects']" [routerLinkActive]="['active']">{{'projects' | translate}}</li>
+      <li class="opt hov isa" [ngClass]="{'active' : _configuration.home}" (click)="_configuration.slideToDiv('#welcome')">{{ 'home' | translate }}</li>
+      <li class="opt hov isa" [ngClass]="{'active' : _configuration.about}" (click)="_configuration.slideToDiv('#about')">{{ 'aboutTlt' | translate }}</li>
+      <li class="opt hov isa" [ngClass]="{'active' : _configuration.projects}" (click)="_configuration.slideToDiv('#projects')">{{'projects' | translate}}</li>
     </ul>
   </nav>
   <!-- Components -->

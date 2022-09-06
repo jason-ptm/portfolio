@@ -67,11 +67,6 @@ export class ProjectComponent implements OnInit {
   async ngOnInit() {
     if(this._id != null || this._id != undefined) await this._dbService.getProject(this._id)
     if(!this._login.checkUser()) this._router.navigate(['/projects'])
-
-    this.projectForm.get('startDate')?.setValue(new Date(this._dbService.selectedProject.startDate))
-    this.projectForm.get('endDate')?.setValue(new Date(this._dbService.selectedProject.endDate))
-
-    this.indexImage = this.imagesUrls.indexOf(this._dbService.selectedProject.image)
   }
 
   addLang(){
@@ -87,14 +82,7 @@ export class ProjectComponent implements OnInit {
     this._dbService.selectedProject.languajes.splice(index,1)
   }
 
-  selectImage(index:number){
-    this.indexImage = index
-    this._dbService.selectedProject.image = this.imagesUrls[index]
-  }
-
   addData(){
-    this._dbService.selectedProject.startDate = moment(this.projectForm.get('startDate')?.value).format('L')
-    this._dbService.selectedProject.endDate = moment(this.projectForm.get('endtDate')?.value).format('L')
     if(this._id != undefined || this._id != null)this._dbService.updateProject()
     else this._dbService.createProject()
   }

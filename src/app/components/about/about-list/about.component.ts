@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { AfterContentInit, AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 //Animations modules
@@ -7,8 +7,9 @@ import ScrollTrigger from 'gsap/ScrollTrigger';
 
 //popups
 import { SwalComponent, SwalPortalTargets } from '@sweetalert2/ngx-sweetalert2';
-import { AppComponent } from 'src/app/app.component';
 import { ConfigurationsService } from 'src/app/services/configurations.service';
+import { DataBaseService } from 'src/app/services/data-base.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-about',
@@ -22,7 +23,12 @@ export class AboutComponent implements OnInit, OnDestroy {
   public readonly formCon!: SwalComponent;
   animations: any
 
-  constructor(private _fb:FormBuilder, public readonly swalTargets: SwalPortalTargets, private _app:AppComponent, public _configuration:ConfigurationsService) {
+  constructor(
+    private _fb:FormBuilder, 
+    public readonly swalTargets: SwalPortalTargets,
+    public _configuration:ConfigurationsService,
+    public _dbService:DataBaseService,
+    private router:Router) {
     
     this.contactForm = this._fb.group({
       name:[undefined, [Validators.required, Validators.maxLength(30)]],
@@ -31,26 +37,30 @@ export class AboutComponent implements OnInit, OnDestroy {
     })
   }
 
-  ngOnInit(): void {
+  ngOnInit():void {
+    this._dbService.getProjects()
     gsap.registerPlugin(ScrollTrigger)
     this.initialAnimations()
     this.initScrollAnimations()
+    this.animProjects()
     this.scroll()
   }
 
   initialAnimations(){
-    if(this._configuration.animations){
-      gsap.from('.tltan', {
-        duration: 1,
-        width:'100%',
-        stagger: .2,
-        delay: 1.6
-      })
-    }
+    gsap.from('.tltan', {
+      duration: 1,
+      width:'100%',
+      stagger: .2,
+      delay: 1.6
+    })
   }
 
   scroll(){
-    window.scrollTo(0,0)
+    setTimeout(()=>{
+      $('html, body').animate({
+        scrollTop: 0
+      }, 0);
+    }, 500)
   }
 
   initScrollAnimations(){
@@ -60,11 +70,53 @@ export class AboutComponent implements OnInit, OnDestroy {
           trigger:cont,
           start:'top 60%',
           end:'bottom 60%',
-          scrub:true,
           toggleClass:'anim-init'
-        },onStart:()=>ScrollTrigger.refresh()
+        },onStart:()=>{
+          // console.log(cont.id)
+          this._configuration.changeValues(cont.id)
+          ScrollTrigger.refresh()
+        },onRepeat:()=>{
+          console.log(cont.id)
+        }
       })
     })
+  }
+
+  animProjects(){
+    setTimeout(() => {
+      document.querySelectorAll('#projects .item').forEach((item)=>{
+        gsap.from(item,{
+          scrollTrigger:{
+            trigger:item,
+            start:'30% bottom',
+            end:'bottom top',
+            toggleClass:'view'
+          }
+        })
+      })
+      this._configuration.animateMouse()
+    }, 1000);
+  }
+
+  add(){
+    this._dbService.selectedProject = this._dbService.projectPlant
+    this.router.navigate(['/project'])
+  }
+
+  update(){
+    this.router.navigate(['/project',this._dbService.selectedProject._id])
+  }
+
+  async delete(){
+    await this._dbService.deleteProject()
+  }
+
+  redirect(url:string){
+    window.open(url,'_blank')
+  }
+
+  changeSlide(slider:HTMLElement){
+    slider.classList.toggle('change')
   }
 
   ngOnDestroy(): void {
