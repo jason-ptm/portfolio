@@ -40,7 +40,7 @@ export class ConfigurationsService {
       this.about = false
       this.projects = true
     }
-    else{
+    else if(div != 'contact'){
       this.home = false
       this.about = true
       this.projects = false

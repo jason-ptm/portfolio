@@ -33,6 +33,7 @@ export class DataBaseService {
   async getProjects(){
     await this._store.firestore.collection('projects').get().then(
       res =>{
+        this.arrProjects = []
         res.forEach(item => {
           let project:Project = item.data() as Project
           project._id = item.id

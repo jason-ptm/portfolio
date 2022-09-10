@@ -71,11 +71,16 @@
     </div>
 
     <!-- Projects -->
-    <div class="container" id="projects">
-        <div class="box">
+    <div class="container" id="projects" >
+        <div class="box" *ngIf="_dbService.arrProjects.length > 0">
             <div class="head">
-                <h3 class="title">{{'welcomeTitle' | translate}}</h3>
-                <p class="text">{{'welcomeText' | translate}}</p>
+                <div class="title-head">
+                    <h3 class="title">{{'welcomeTitle' | translate}}</h3>
+                    <p class="text">{{'welcomeText' | translate}}</p>
+                </div>
+                <span class="icon hov" *ngIf="_login.checkUser()" (click)="redirectUser()">
+                    <i class="fa-regular fa-plus"></i>
+                </span>
             </div>
             <div class="items">
                 <div class="item container" [ngClass]="{'left': i%2 == 0}" *ngFor="let project of _dbService.arrProjects; let i = index">
@@ -104,11 +109,17 @@
                         <div class="icons">
                             <span class="link hov" (click)="redirect(project.urlRep)">
                                 <i class="fa-brands fa-github"></i>
-                                Repositorio github
+                                {{'linkRep' | translate}}
                             </span>
                             <span class="link hov" (click)="redirect(project.urlPage)">
                                 <i class="fa-solid fa-globe"></i>
-                                Sitio web
+                                {{'linkPage' | translate}}
+                            </span>
+                            <span class="link hov" (click)="editProject(project)" *ngIf="_login.checkUser()" >
+                                <i class="fa-solid fa-pen"></i>
+                            </span>
+                            <span class="link hov" (click)="deleteProject(project)" *ngIf="_login.checkUser()" >
+                                <i class="fa-solid fa-trash"></i>
                             </span>
                         </div>
                     </div>

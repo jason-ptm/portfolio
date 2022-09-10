@@ -281,6 +281,20 @@
     transform: translateX(-100px);
     opacity: 0;
     transition: transform 1s, opacity 1s;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+#projects .head .icon{
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 100%;
+    border: 1.5px solid #000;
+    cursor: pointer;
 }
 #projects .items{
     display: flex;

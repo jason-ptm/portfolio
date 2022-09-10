@@ -10,6 +10,9 @@ import { SwalComponent, SwalPortalTargets } from '@sweetalert2/ngx-sweetalert2';
 import { ConfigurationsService } from 'src/app/services/configurations.service';
 import { DataBaseService } from 'src/app/services/data-base.service';
 import { Router } from '@angular/router';
+import { LoginService } from 'src/app/services/login.service';
+import Swal from 'sweetalert2';
+import { CONSTANTS } from '@firebase/util';
 
 @Component({
   selector: 'app-about',
@@ -26,6 +29,7 @@ export class AboutComponent implements OnInit, OnDestroy {
   constructor(
     private _fb:FormBuilder, 
     public readonly swalTargets: SwalPortalTargets,
+    public _login:LoginService,
     public _configuration:ConfigurationsService,
     public _dbService:DataBaseService,
     private router:Router) {
@@ -37,21 +41,20 @@ export class AboutComponent implements OnInit, OnDestroy {
     })
   }
 
-  ngOnInit():void {
-    this._dbService.getProjects()
+  async ngOnInit() {
+    this.scroll()
     gsap.registerPlugin(ScrollTrigger)
     this.initialAnimations()
     this.initScrollAnimations()
+    await this._dbService.getProjects()
     this.animProjects()
-    this.scroll()
   }
 
   initialAnimations(){
     gsap.from('.tltan', {
       duration: 1,
       width:'100%',
-      stagger: .2,
-      delay: 1.6
+      delay:1
     })
   }
 
@@ -68,15 +71,14 @@ export class AboutComponent implements OnInit, OnDestroy {
       gsap.from(cont,{
         scrollTrigger:{
           trigger:cont,
-          start:'top 60%',
-          end:'bottom 60%',
-          toggleClass:'anim-init'
-        },onStart:()=>{
-          // console.log(cont.id)
-          this._configuration.changeValues(cont.id)
+          start:'top 62%',
+          end:'bottom 64%',
+          toggleClass:'anim-init',
+          onToggle:()=>this._configuration.changeValues(cont.id)
+        },
+        onStart:()=>{
           ScrollTrigger.refresh()
-        },onRepeat:()=>{
-          console.log(cont.id)
+          
         }
       })
     })
@@ -113,6 +115,30 @@ export class AboutComponent implements OnInit, OnDestroy {
 
   redirect(url:string){
     window.open(url,'_blank')
+  }
+
+  redirectUser(){
+    this.router.navigate(['/project'])
+  }
+
+  editProject(project:any){
+    this._dbService.selectedProject = project
+    this.router.navigate(['/project', project._id])
+  }
+
+  deleteProject(project:any){
+    Swal.fire({
+      icon:'question',
+      title:'Sure u want to delete this?',
+      showConfirmButton:true,
+      showCancelButton:true
+    }).then((res)=>{
+      if(res.isConfirmed){
+        this._dbService.selectedProject = project
+        this._dbService.deleteProject()
+        this.animProjects()
+      }
+    })
   }
 
   changeSlide(slider:HTMLElement){
